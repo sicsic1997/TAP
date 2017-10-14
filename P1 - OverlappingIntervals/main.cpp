@@ -76,12 +76,28 @@ vector<interval> getResult(vector<interval> intervals) {
     return results;
 }
 
+vector<interval> getResultGreedy(vector<interval> intervals) {
+
+    vector<interval> results;
+
+    results.push_back(intervals[0]);
+
+    for(int i = 1; i < intervals.size(); ++i)
+        if(intervals[i].x >= results[results.size() - 1].y)
+            results.push_back(intervals[i]);
+
+    return results;
+}
+
 int main()
 {
 
     vector<interval> intervals = getInput();
     sort(intervals.begin(), intervals.end(), cmp);
-    vector<interval> result = getResult(intervals);
+
+    //vector<interval> result = getResult(intervals);
+    vector<interval> result = getResultGreedy(intervals);
+
     printVector(result);
     return 0;
 }
