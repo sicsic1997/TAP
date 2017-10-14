@@ -95,6 +95,7 @@ int main()
     vector<interval> intervals = getInput();
     sort(intervals.begin(), intervals.end(), cmp);
 
+    printVector(intervals);
     //vector<interval> result = getResult(intervals);
     vector<interval> result = getResultGreedy(intervals);
 
