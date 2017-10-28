@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <time.h>
+#include <queue>
 using namespace std;
 
 struct interval {
@@ -9,6 +9,20 @@ struct interval {
     int x, y;
 
 };
+
+vector<interval> intervals;
+int intervalMapToHall[10000]; ///sorry for this hardcoded stuff :(
+
+struct cmp{
+
+    bool operator()(const int &a, const int &b)  {
+        return intervals[a].y > intervals[b].y;
+    }
+
+};
+
+priority_queue<int,vector<int>,cmp> Q;
+
 
 vector<interval> getInput() {
 
@@ -48,21 +62,31 @@ vector< vector<interval> > getResultGreedy(vector<interval> intervals) {
     for(int k = 0; k < intervals.size(); ++k) {
 
         int hallNumber = -1;
-        ///search for first free place
 
-        for(int i = 0; i < lectureHalls.size() && hallNumber < 0; ++i) {
-
-            aux = lectureHalls[i];
-            if(aux[aux.size() - 1].y <= intervals[k].x)
-                hallNumber = i;
-        }
-
-        if(hallNumber >= 0)
-            lectureHalls[hallNumber].push_back(intervals[k]);
-        else {
+        if(Q.empty()) {
             aux.clear();
-            aux.push_back(intervals[k])
+            aux.push_back(intervals[k]);
             lectureHalls.push_back(aux);
+            intervalMapToHall[k] = lectureHalls.size() - 1;
+            Q.push(k);
+        }
+        else {
+            int temp = Q.top();
+            //cout << k << " " << temp << '\n';
+
+            if(intervals[temp].y <= intervals[k].x) {
+                Q.pop();
+                lectureHalls[intervalMapToHall[temp]].push_back(intervals[k]);
+                intervalMapToHall[k] = intervalMapToHall[temp];
+                Q.push(k);
+            }
+            else {
+                aux.clear();
+                aux.push_back(intervals[k]);
+                lectureHalls.push_back(aux);
+                intervalMapToHall[k] = lectureHalls.size() - 1;
+                Q.push(k);
+            }
         }
 
     }
@@ -73,6 +97,7 @@ vector< vector<interval> > getResultGreedy(vector<interval> intervals) {
 
 void printLectureHalls(vector< vector<interval> > lectureHall) {
 
+    cout << lectureHall.size() - 2 << '\n';
     vector<interval> aux;
     for(int i = 0; i < lectureHall.size(); ++i) {
 
@@ -90,7 +115,7 @@ void printLectureHalls(vector< vector<interval> > lectureHall) {
 int main()
 {
 
-    vector<interval> intervals = getInput();
+    intervals = getInput();
     sort(intervals.begin(), intervals.end(), cmp);
 
     //printVector(intervals);
