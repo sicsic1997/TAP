@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1509275715 source:c:\users\coteanu\documents\tap\problema1\main.cpp
+	<iostream>
+	<vector>
+

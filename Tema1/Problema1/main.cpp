@@ -20,6 +20,8 @@ void simulateGame(bool decision, vector<int> numbers) {
 
     int sumaPrimulJucator = 0, sumaAlDoileaJucator = 0, st = 0, dr = numbers.size() - 1;
 
+    cout << decision << '\n';
+
     ///i par inseamna primul jucator, i impar inseamna al doilea jucator
     for(int i = 0; i < numbers.size() - 2; ++i) {
 
