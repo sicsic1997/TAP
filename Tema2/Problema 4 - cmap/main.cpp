@@ -9,11 +9,15 @@ using namespace std;
 ifstream f("cmap.in");
 ofstream g("cmap.out");
 
+
 struct point {
 
     int x, y;
 
 };
+
+vector<point> tempPointList;
+vector<point> points;
 
 bool operator < (point A, point B) {
     if(A.x - B.x)
@@ -45,9 +49,7 @@ vector<point> getInput() {
 
 }
 
-vector<point> tempPointList;
-
-double getMinDist(int left, int right, vector<point> points) {
+double getMinDist(int left, int right) {
 
     ///Single point case
     if(left >= right) {
@@ -70,8 +72,8 @@ double getMinDist(int left, int right, vector<point> points) {
     ///Get the results from left and right side of the median
     int mid = (left + right) / 2;
     double temp = INT_MAX, temp1, temp2;
-    temp1 = getMinDist(left, mid, points);
-    temp2 = getMinDist(mid, right, points);
+    temp1 = getMinDist(left, mid);
+    temp2 = getMinDist(mid, right);
     temp = min(temp1, temp2);
 
     ///Get min distance for points on different side of the median
@@ -79,24 +81,24 @@ double getMinDist(int left, int right, vector<point> points) {
     for(int i = mid; i >= left && points[mid].x - points[i].x <= temp; i--)
         tempPointList.push_back(points[i]);
 
-    for(int i = mid; i <= right && points[i].x - points[mid].x <= temp; i++)
+    for(int i = mid + 1; i <= right && points[i].x - points[mid].x <= temp; i++)
         tempPointList.push_back(points[i]);
 
     sort(tempPointList.begin(), tempPointList.end());
+
     for(int i = 0; i < tempPointList.size(); ++i)
-        for(int j = i + 1; j < i + 8 && j < tempPointList.size(); ++j)
-            temp = min(temp, getDist(points[i], points[j]));
+        for(int j = i + 1; j < i + 8 && j < tempPointList.size(); ++j) {
+            temp = min(temp, getDist(tempPointList[i], tempPointList[j]));
+
+        }
 
     return temp;
 }
 
 int main()
 {
-    vector<point> points;
     points = getInput();
-    double minDist = getMinDist(0, points.size() - 1, points);
-
-    g << setprecision(9) << minDist << '\n';
-
+    double minDist = getMinDist(0, points.size() - 1);
+    g << s(20) << minDist << '\n';
     return 0;
 }
