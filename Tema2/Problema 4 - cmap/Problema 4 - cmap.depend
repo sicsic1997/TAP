@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1510580856 source:c:\users\student.lab221a-6\documents\l6clone\tap\tema2\problema 4 - cmap\main.cpp
-	<fstream>
-	<vector>
-	<algorithm>
-	<math.h>
-	<limits.h>
-	<iomanip>
-
