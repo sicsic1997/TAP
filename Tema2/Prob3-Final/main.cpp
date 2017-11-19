@@ -26,7 +26,7 @@ int getSemnificativeInversions(vector<int> &inputArray, int left, int right) {
     if(right - left == 1) {
         if(inputArray[left] > inputArray[right]) {
             interChange(inputArray, left, right);
-            if(inputArray[left] > inputArray[right] * 2) {
+            if(inputArray[left] * 2 < inputArray[right]) {
                 return 1;
             } else {
                 return 0;
