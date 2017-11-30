@@ -18,7 +18,7 @@ int getNumberOfPalindromes(string s) {
         }
 
         ///Second case: two letter in the middle
-        if(i > 1) {
+        if(i < s.length()) {
             len = 0;
             int j = i + 1;
             while(i - len >= 0 && j + len < s.length() && s[i - len] == s[j + len]) {
