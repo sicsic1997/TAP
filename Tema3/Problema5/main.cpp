@@ -3,13 +3,14 @@
 #define Nmax 201
 using namespace std;
 int n,i,j,v[Nmax];
+int d[Nmax][Nmax], t[Nmax][Nmax];
 
 struct movement{int nextmove, maxdif;};
 
-movement getMaxDif(int st, int dr, int v[]) {
+void calculateMaxDif(int st, int dr) {
 
-    int d[Nmax][Nmax], t[Nmax][Nmax];
     d[dr][dr] = v[dr];
+
     for (i=dr-1; i>=st; i--)
     {
         for (j=i; j<=dr; j++)
@@ -27,9 +28,14 @@ movement getMaxDif(int st, int dr, int v[]) {
             }
     }
 
+}
+
+movement getMaxDif(int st, int dr) {
+
     movement aux;
     aux.maxdif = d[st][dr];
     aux.nextmove = t[st][dr];
+
     return aux;
 }
 
@@ -39,7 +45,7 @@ int main()
     for (i=1; i<=n; i++)
         cin >> v[i];
 
-
+    calculateMaxDif(1, n);
 
     cout << "START JOC" << '\n';
     int SCPU = 0, SUSER = 0, k = n, st = 1, dr = n;
@@ -52,7 +58,7 @@ int main()
             cout << v[i] << " ";
         cout << '\n';
         if(!atMove){
-            movement temp = getMaxDif(st, dr, v);
+            movement temp = getMaxDif(st, dr);
             cout << "CPU: Number " << v[temp.nextmove] << '\n';
             SCPU += v[temp.nextmove];
             if(v[st] == v[temp.nextmove])
