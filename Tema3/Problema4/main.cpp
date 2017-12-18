@@ -1,3 +1,14 @@
+/*
+    a) Principiu:
+        incerc sa creez palindromul dinspre centru, iar daca word[i....j] descrie un palindrom, atunci adaug la dictionar
+        D[i][j] = 1;
+    b) Recurenta
+        numberOfPal[i] = numarul de palindroame folosite pentru a construi solutia pana in punctul i
+        pentru i = 1 -> n
+            pentru j = i + 1 -> n
+                numberOfPal[j] = numberOfPal[i] + 1, daca D[i][j] = 1 si numberOfPal[j] > numberOfPal[i - 1] + 1  //exceptie la prima completare
+*/
+
 #include <iostream>
 #define Nmax 1000
 using namespace std;

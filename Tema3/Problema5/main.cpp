@@ -1,3 +1,9 @@
+/*
+pentru i = n -> 1
+    pentru j = 1; j -> n
+        d[i][j] = max(v[i]-d[i + 1][j], v[j]-d[i][j-1]);
+*/
+
 #include <iostream>
 #include <string.h>
 #define Nmax 201

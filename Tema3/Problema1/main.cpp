@@ -1,3 +1,13 @@
+/*
+* Reccurence:
+*
+*   For every word:
+*   V[i] = "ab*****cd"
+*   Hash["ab"] = index, where V[index] = "xy...ab"
+*   D[i] = 1, if Hash["ab"] == 0
+*        = D[Hash["ab"]] + 1, if Hash["ab"] != 0
+*/
+
 #include <fstream>
 #include <string.h>
 #include <vector>

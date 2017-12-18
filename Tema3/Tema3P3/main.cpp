@@ -1,3 +1,12 @@
+/*
+* D[i][j] = 0, daca V[i][j] = 1
+* D[i][j] = min(D[i - 1][j], min(D[i - 1][j - 1], D[i][j - 1])) + 1, daca V[i][j] = 0;
+*
+* Conditie pentru adunare la nr de patrate cu latura >= k
+* if(D[i][j] >= K)
+*       S += D[i][j] - K + 1;
+*/
+
 #include <fstream>
 #include <string.h>
 #define Nmax 500
