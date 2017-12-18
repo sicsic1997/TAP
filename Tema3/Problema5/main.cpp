@@ -13,7 +13,7 @@ void calculateMaxDif(int st, int dr) {
 
     for (i=dr-1; i>=st; i--)
     {
-        for (j=i; j<=dr; j++)
+        for (j=st; j<=dr; j++)
             if (i == j) {
                 d[i][i] = v[i];
                 t[i][i] = i;
