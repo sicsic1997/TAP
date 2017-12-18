@@ -1,7 +1,13 @@
 /*
+
 pentru i = n -> 1
     pentru j = 1; j -> n
         d[i][j] = max(v[i]-d[i + 1][j], v[j]-d[i][j-1]);
+
+d[i][j] = diferenta maxima cu care poate castiga jucatorul aflat la mutare pe o tabla v[i ....j]
+Se alege diferenta maxima fie prin alipirea lui v[i] la v[i+1 ....j] fie prin lipirea lui v[j] la v[i...j - 1]
+d[i][i] = 1;
+
 */
 
 #include <iostream>

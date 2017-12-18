@@ -1,7 +1,9 @@
 /*
-* D[i][j] = 0, daca V[i][j] = 1
+* D[i][j] = 0, daca V[i][j] = 1 (nu formeaza un patrat)
 * D[i][j] = min(D[i - 1][j], min(D[i - 1][j - 1], D[i][j - 1])) + 1, daca V[i][j] = 0;
-*
+* adica se adauga fie ca si coloana la patratul care se termina la stanga patratelului,
+* fie ca linie sub patratul care se termina deasupra patratelului
+* (prin se termina intelegem ca acolo se afla coltul din dreapta jos)
 * Conditie pentru adunare la nr de patrate cu latura >= k
 * if(D[i][j] >= K)
 *       S += D[i][j] - K + 1;
