@@ -1,4 +1,5 @@
 /*
+* D[i][j] = latura maxima a patratului care are coltul din dreapta jos in i,j
 * D[i][j] = 0, daca V[i][j] = 1 (nu formeaza un patrat)
 * D[i][j] = min(D[i - 1][j], min(D[i - 1][j - 1], D[i][j - 1])) + 1, daca V[i][j] = 0;
 * adica se adauga fie ca si coloana la patratul care se termina la stanga patratelului,

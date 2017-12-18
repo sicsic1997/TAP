@@ -1,9 +1,10 @@
 /*
 * Reccurence:
-*
+*   V[i] -> ith word from input
 *   For every word:
 *   V[i] = "ab*****cd"
-*   Hash["ab"] = index, where V[index] = "xy...ab"
+*   Hash["ab"] = index, where exists index such as V[index] = "xy...ab"
+*   D[i] = maximum length of a substring that contains word i
 *   D[i] = 1, if Hash["ab"] == 0
 *        = D[Hash["ab"]] + 1, if Hash["ab"] != 0
 */
